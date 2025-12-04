@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Home, Sparkles, Image, FileText, Download, Menu, X } from 'lucide-react'
+import { Home, Sparkles, Image, FileText, Download, Menu, X, Shield } from 'lucide-react'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -15,6 +15,7 @@ export default function Navbar() {
     { name: 'Gallery', href: '/gallery', icon: Image },
     { name: 'Changelog', href: '/changelog', icon: FileText },
     { name: 'Download', href: '/download', icon: Download },
+    { name: 'Privacy', href: '/privacy', icon: Shield },
   ]
 
   return (
@@ -39,16 +40,15 @@ export default function Navbar() {
             {navLinks.map((link) => {
               const Icon = link.icon
               const isActive = pathname === link.href
-              
+
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`group flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 ${
-                    isActive
+                  className={`group flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 ${isActive
                       ? 'bg-gradient-to-r from-[#7C3AED]/20 to-[#00E5FF]/20 text-[#00E5FF] shadow-lg shadow-[#00E5FF]/10'
                       : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                  }`}
+                    }`}
                 >
                   <Icon className={`w-6 h-6 flex-shrink-0 ${isActive ? 'text-[#00E5FF]' : 'text-gray-500 group-hover:text-[#00E5FF]'} transition-colors duration-300`} />
                   <span className="hidden xl:block font-medium">{link.name}</span>
@@ -65,9 +65,8 @@ export default function Navbar() {
 
       {/* Mobile Sidebar - Same as Desktop */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
       >
         {/* Backdrop */}
         <div
@@ -77,9 +76,8 @@ export default function Navbar() {
 
         {/* Sidebar - PC Style */}
         <div
-          className={`absolute top-0 left-0 h-full w-72 bg-gradient-to-b from-gray-900 to-black border-r border-gray-800 shadow-2xl transform transition-transform duration-300 ${
-            isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+          className={`absolute top-0 left-0 h-full w-72 bg-gradient-to-b from-gray-900 to-black border-r border-gray-800 shadow-2xl transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
         >
           <div className="flex h-full flex-col">
             {/* Logo */}
@@ -99,17 +97,16 @@ export default function Navbar() {
               {navLinks.map((link) => {
                 const Icon = link.icon
                 const isActive = pathname === link.href
-                
+
                 return (
                   <Link
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`group flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 ${
-                      isActive
+                    className={`group flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 ${isActive
                         ? 'bg-gradient-to-r from-[#7C3AED]/20 to-[#00E5FF]/20 text-[#00E5FF] shadow-lg shadow-[#00E5FF]/10'
                         : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                    }`}
+                      }`}
                   >
                     <Icon className={`w-6 h-6 flex-shrink-0 ${isActive ? 'text-[#00E5FF]' : 'text-gray-500 group-hover:text-[#00E5FF]'} transition-colors duration-300`} />
                     <span className="font-medium">{link.name}</span>
